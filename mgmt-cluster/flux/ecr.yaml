@@ -1,0 +1,30 @@
+kind: Kustomization
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+metadata:
+  name: ecr-repos
+  namespace: flux-apps
+  annotations:
+    templates.weave.works/create-request: ''
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: clusters
+  path: ./onboarding
+  dependsOn:
+    - name: aws
+    - name: t2-eks-config-dev-eu-cset1-c1
+    - name: t2-eks-config-dev-eu-cset1-c2
+    - name: t2-eks-config-dev-eu-cset2-c1
+    - name: t2-eks-config-dev-us-cset1-c1
+    - name: t2-eks-config-stage-eu-cset1-c1
+  prune: true
+  wait: true
+  timeout: 5m
+  postBuild:
+    substitute:
+      resourceName: t2
+      templateNamespace: flux-apps
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-config
