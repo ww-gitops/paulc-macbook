@@ -13,6 +13,7 @@ spec:
   path: ./onboarding
   dependsOn:
     - name: aws
+      namespace: flux-system
     - name: t2-eks-config-dev-eu-cset1-c1
     - name: t2-eks-config-dev-eu-cset1-c2
     - name: t2-eks-config-dev-eu-cset2-c1
