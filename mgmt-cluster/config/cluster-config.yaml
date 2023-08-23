@@ -8,14 +8,14 @@ data:
   clusterType: "macbook"
   mgmtClusterName: ww-paulc-macbook
   dnsSuffix: kubernetes.docker.internal
-  clusterIP: 10.96.173.184
+  clusterIP: 10.104.127.3
   scmType: github
   GitHubOrg: ww-gitops
   GitHubRepo: paulc-macbook
   globalGitHubOrg: ww-gitops
   globalGitHubRepo: global-config
   globalGitHubBranch: main
-  awsAccountId: ""
+  awsAccountId: "749339757188"
   prefixName: ww-pc-macbook
   awsRegion: eu-west-1
   awsTagCreator: paul.carlton@weave.works
