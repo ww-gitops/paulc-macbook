@@ -39,7 +39,7 @@ spec:
   dependsOn:
   - name: flux-components
   interval: 10m0s
-  path: ./mgmt-cluster/addons/nginx
+  path: ./mgmt-cluster/addons/nginx-kind
   prune: true
   wait: true
   sourceRef:
@@ -47,7 +47,7 @@ spec:
     name: global-config
   postBuild:
     substitute:
-      dnsSuffix: kubernetes.docker.internal
+      dnsSuffix: ec2-3-249-134-14.eu-west-1.compute.amazonaws.com
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -83,7 +83,7 @@ spec:
     name: global-config
   postBuild:
     substitute:
-      dnsSuffix: kubernetes.docker.internal
+      dnsSuffix: ec2-3-249-134-14.eu-west-1.compute.amazonaws.com
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -102,7 +102,7 @@ spec:
     name: global-config
   postBuild:
     substitute:
-      dnsSuffix: kubernetes.docker.internal
+      dnsSuffix: ec2-3-249-134-14.eu-west-1.compute.amazonaws.com
       storageClass: hostpath
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -139,7 +139,7 @@ spec:
     name: global-config
   postBuild:
     substitute:
-      dnsSuffix: kubernetes.docker.internal
+      dnsSuffix: ec2-3-249-134-14.eu-west-1.compute.amazonaws.com
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -196,7 +196,7 @@ spec:
     name: global-config
   postBuild:
     substitute:
-      dnsSuffix: kubernetes.docker.internal
+      dnsSuffix: ec2-3-249-134-14.eu-west-1.compute.amazonaws.com
     substituteFrom:
       - kind: ConfigMap
         name: cluster-config
@@ -210,7 +210,6 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: dex
-    - name: config
   path: ./mgmt-cluster/addons/wge
   prune: true
   wait: true
@@ -294,33 +293,13 @@ spec:
     - name: wge
   path: ./mgmt-cluster/namespaces
   prune: true
-  wait: true
+  # wait: true
   sourceRef:
     kind: GitRepository
     name: global-config
   postBuild:
     substitute:
       suspendNamespaceGitopsSet: "false"
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-config
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: ecr
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  dependsOn:
-    - name: wge
-  path: ./mgmt-cluster/ecr
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  postBuild:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-config
