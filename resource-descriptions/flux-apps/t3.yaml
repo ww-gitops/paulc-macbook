@@ -1,0 +1,25 @@
+wge:
+  gui: false
+
+template: 
+  name: dynamic-v1
+  namespace: flux-apps
+aws:
+  region: eu-west-1
+
+vpcs:
+  - name: v1
+    mode: create
+    cidr: 10.0.0.0/16
+    publicsubnets: 3
+    privatesubnets: 3
+
+clusters:
+    
+  - name: wge
+    mode: create
+    gui: true
+    flux: true
+    vpc_name: v1
+    version: 1.27
+    
