@@ -294,7 +294,7 @@ spec:
     - name: wge
   path: ./mgmt-cluster/namespaces
   prune: true
-  # wait: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: global-config
@@ -304,24 +304,24 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-config
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: ecrs
-  namespace: flux-apps
-spec:
-  interval: 10m0s
-  path: ./mgmt-cluster/ecr
-  prune: true
-  wait: true
-  dependsOn:
-    - name: namespaces
-      namespace: flux-system
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-config
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: ecrs
+#   namespace: flux-apps
+# spec:
+#   interval: 10m0s
+#   path: ./mgmt-cluster/ecr
+#   prune: true
+#   wait: true
+#   dependsOn:
+#     - name: namespaces
+#       namespace: flux-system
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#   postBuild:
+#     substituteFrom:
+#       - kind: ConfigMap
+#         name: cluster-config
