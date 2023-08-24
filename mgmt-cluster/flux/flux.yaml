@@ -321,6 +321,8 @@ spec:
     - name: t2-eks-config-dev-eu-cset2-c1
     - name: t2-eks-config-dev-us-cset1-c1
     - name: t2-eks-config-stage-eu-cset1-c1
+    - name: namespaces
+      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system
