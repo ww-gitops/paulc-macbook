@@ -304,3 +304,29 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-config
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: ecrs
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: wge
+  path: ./mgmt-cluster/ecrs
+  prune: true
+  wait: true
+  dependsOn:
+    - name: t2-eks-config-dev-eu-cset1-c1
+    - name: t2-eks-config-dev-eu-cset1-c2
+    - name: t2-eks-config-dev-eu-cset2-c1
+    - name: t2-eks-config-dev-us-cset1-c1
+    - name: t2-eks-config-stage-eu-cset1-c1
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-config
