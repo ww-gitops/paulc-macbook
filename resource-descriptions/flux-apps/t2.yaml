@@ -16,41 +16,9 @@ vpcs:
 
 clusters:
     
-  - name: dev-eu-cset1-c1
+  - name: wge
     mode: create
     gui: true
     flux: true
     vpc_name: v1
     version: 1.27
-
-  - name: dev-eu-cset1-c2
-    mode: create
-    gui: true
-    flux: true
-    vpc_name: v1
-    version: 1.27
-    cset: cset2
-
-  - name: dev-eu-cset2-c1
-    mode: create
-    gui: true
-    flux: true
-    vpc_name: v1
-    version: 1.27
-    cset: cset2
-
-  - name: dev-us-cset1-c1
-    mode: create
-    gui: true
-    flux: true
-    vpc_name: v1
-    version: 1.27
-    region: us
-
-  - name: stage-eu-cset1-c1
-    mode: create
-    gui: true
-    flux: true
-    vpc_name: v1
-    version: 1.27
-    env: stage
