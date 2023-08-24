@@ -312,7 +312,7 @@ metadata:
   namespace: flux-apps
 spec:
   interval: 10m0s
-  path: ./mgmt-cluster/ecrs
+  path: ./mgmt-cluster/ecr
   prune: true
   wait: true
   dependsOn:
