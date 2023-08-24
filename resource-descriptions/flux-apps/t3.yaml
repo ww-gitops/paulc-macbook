@@ -14,12 +14,10 @@ vpcs:
     publicsubnets: 3
     privatesubnets: 3
 
-clusters:
-    
+clusters:   
   - name: wge
     mode: create
     gui: true
     flux: true
     vpc_name: v1
     version: 1.27
-    
