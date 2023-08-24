@@ -309,7 +309,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: ecrs
-  namespace: flux-system
+  namespace: flux-apps
 spec:
   interval: 10m0s
   path: ./mgmt-cluster/ecrs
